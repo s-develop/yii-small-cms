@@ -42,18 +42,18 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
+                //Костыли нужно переработать
 				'control/<action:\S+>/<id:\d+>'=>'control/<action>',
 				'control/<action:\S+>' =>'control/<action>',
 				'control' => 'control',
-				'gii' => 'gii',
-				'gii/<action:\S+>/<id:\d+>'=>'gii/<action>',
+                'control/login' => 'control/login/index',
+                'gii' => 'gii',
+                'gii/<action:\S+>/<id:\d+>'=>'gii/<action>',
 				'gii/<action:\S+>' =>'gii/<action>',
-				'control/login' => 'control/login/index',
 				'site/<action:\S+>/<id:\d+>'=>'site/<action>',
 				'site/<action:\S+>' =>'site/<action>',
 				'<controller:\S+>' => '/site/index',
 				'<controller:\w+>/<alias:\w+>' => '/site/index',
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
@@ -93,12 +93,6 @@ return array(
 				),
 				*/
 			),
-		),
-		// почта в раздел компонентов
-		 'mailer' => array(
-			 'class' => 'application.extensions.mailer.EMailer',
-			 'pathViews' => 'application.views.email',
-			 'pathLayouts' => 'application.views.email.layouts'
 		),
 	),
 

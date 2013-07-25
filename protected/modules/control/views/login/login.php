@@ -3,7 +3,8 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 ?>
-
+<div class="span3"></div>
+<div class="span6">
 <h5>Вход в панель управления</h5>
 
 <div class="form">
@@ -37,4 +38,6 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+</div>
+<div class="span3"></div>
 </div><!-- form -->

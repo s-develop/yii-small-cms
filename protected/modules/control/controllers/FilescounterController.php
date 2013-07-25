@@ -21,7 +21,7 @@ class FilescounterController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','delete', 'create','update'),
+				'actions'=>array('index'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users

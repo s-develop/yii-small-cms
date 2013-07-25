@@ -2,10 +2,13 @@
 
 class LoginController extends Controller
 {
-	public $layout='/layouts/column3';
+	public $layout='/layouts/login_l';
 
 	public function actionIndex(){
-		$this->actionLogin();
+		if(Yii::app()->user->isGuest)
+            $this->actionLogin();
+        else
+            $this->goToAdminPanel();
 	}
 
 	public function actionLogin()
@@ -25,18 +28,26 @@ class LoginController extends Controller
 				$model->attributes=$_POST['LoginForm'];
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login())
-					$this->redirect(Yii::app()->request->hostInfo.'/control/category');
+					$this->goToAdminPanel();
 			}
 			// display the login form
 			$this->render('login',array('model'=>$model));
 		}
 
-		/**
-		 * Logs out the current user and redirect to homepage.
-		 */
-		public function actionLogout()
-		{
-			Yii::app()->user->logout();
-			$this->redirect(Yii::app()->request->hostInfo.'/control/login');
-		}
+    /**
+     * Logs out the current user and redirect to homepage.
+     */
+    public function actionLogout()
+    {
+        Yii::app()->user->logout();
+        $this->redirect(Yii::app()->request->hostInfo.'/control/login');
+    }
+
+    /**
+     * Переправляет в админку
+     */
+    protected function goToAdminPanel()
+    {
+        $this->redirect(Yii::app()->request->hostInfo.'/control/category');
+    }
 }
