@@ -80,8 +80,10 @@ $this->widget('CTreeView', array('data' => $my_data));*/?>
 		'alias_cat',
 		'position',
 		array(
-			'class'=>'CButtonColumn',
-			'viewButtonOptions' => array('style' => 'display:none'),
+            'class'=>'CButtonColumn',
+            'viewButtonOptions' => array('class' => 'none'),
+            'deleteButtonOptions' => array('class' => 'fui-cross'),
+            'updateButtonOptions' => array('class' => 'fui-new'),
 		),
 	),
 )); ?>

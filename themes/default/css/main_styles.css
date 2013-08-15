@@ -1,4 +1,3 @@
-@charset utf-8;
 a {
     outline: none !important;
 }
@@ -110,3 +109,39 @@ footer[role="contentinfo"]{
 #moymir:hover{
 	background: url('../images/socials.png') -42px -271px no-repeat;
 }
+.admin-info-panel{
+    position: absolute;
+    top:0;
+    right:0;
+    z-index:10000;
+    display: block;
+    padding: 15px;
+    width: 150px;
+    height: 95px;
+    background-color: rgba(105, 105, 105, .5);
+    color:#FFF;
+    text-align: left;
+    text-shadow: none;
+    font-size:0.75em;
+}
+span.admin-info-panel a{
+    background: #cedce7;
+    background: -moz-linear-gradient(top,  #cedce7 0%, #596a72 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cedce7), color-stop(100%,#596a72));
+    background: -webkit-linear-gradient(top,  #cedce7 0%,#596a72 100%);
+    background: -o-linear-gradient(top,  #cedce7 0%,#596a72 100%);
+    background: -ms-linear-gradient(top,  #cedce7 0%,#596a72 100%);
+    background: linear-gradient(to bottom,  #cedce7 0%,#596a72 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 );
+    display: block;
+    text-decoration: none;
+    color: #FFF;
+    margin-top: 12px;
+    margin-bottom: 25px;
+    height: 18px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+

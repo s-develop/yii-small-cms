@@ -106,14 +106,20 @@
 <div class="row">
 <footer role="contentinfo">
 <div class="copyright pull-right">
-<?php 
-    /*
-    *
-    * Если сайт просматривается не админом, то выводится код счетчиков
-    *
-    */
-    if(Yii::app()->user->isGuest) echo $this->htmlBlocks['countersBlock'];
-    else echo Yii::app()->user->name;
+<?php
+/*
+*
+* Если сайт просматривается не админом, то выводится код счетчиков
+*
+*/
+if(Yii::app()->user->isGuest) echo $this->htmlBlocks['countersBlock'];
+else {
+    echo '<span class="admin-info-panel">';
+    echo 'Пользователь '.Yii::app()->user->name.'<br />';
+    printf('Отработало за %0.5f с.<br/>', Yii::getLogger()->getExecutionTime());
+    printf("Использовано оперативной памяти: %0.5F MB", round(memory_get_peak_usage() / (1024 * 1024), 3));
+    echo '<a href="/control">Панель управления</a></span>';
+}
 ?>
   &nbsp;©&nbsp;2011-2013&nbsp;<?php echo $this->aSettings['company_name'] ?> 
 </div>

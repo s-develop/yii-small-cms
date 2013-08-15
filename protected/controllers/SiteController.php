@@ -95,9 +95,23 @@ class SiteController extends Controller
 
 		//Запрос к базе для поиска страниц по Alias
 		if(!empty($this->alias) && $pageRender){
-			
-			$model_content = Content::model()->find('uri=:content_alias', array(':content_alias'=>$this->alias));
-			
+
+            $page_uri = $this->alias;
+            $criteria = new CDbCriteria();
+            $criteria->addCondition('uri=:page_uri');
+            if(Yii::app()->user->isGuest){
+                $criteria->addCondition('status=:page_status');
+                $criteria->params = array(
+                    'page_uri' => $page_uri,
+                    'page_status' => 1,
+                );
+            }else{
+                $criteria->params = array(
+                    'page_uri' => $page_uri,
+                );
+            }
+            $model_content = Content::model()->find($criteria);
+
 			//Если результат не пустой рендерим вид со страницей
 			if(!empty($model_content)){
 

@@ -1,0 +1,58 @@
+body{
+    background: url(../images/rough_diagonal.png);
+}
+.container, .row{
+    background-color: transparent !important;
+}
+#content, .span4{
+    margin: 0 !important;
+}
+.border-wrapper{
+    margin:50px auto 0 !important;
+    width: auto;
+    padding: 12px;
+    background: rgba(52,73,94,0.15);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#content{
+    width: auto;
+    margin:0 auto !important;
+    padding: 2em;
+    background: rgba(255,255,255,.6);
+}
+#content h5{
+    margin: 12px 0;
+    color: #34495e;
+    font-size: 1.2em;
+}
+.error input{
+    border-color: #e74c3c;
+}
+.errorMessage{
+    color: #e74c3c;
+}
+div.buttons input.btn, div.row input{
+    display: block;
+    width: 300px;
+}
+div.buttons input.btn{
+    width: 314px;
+}
+#LoginForm_rememberMe{
+    margin: 18px 0;
+}
+#LoginForm_rememberMe, div.rememberMe label{
+    display: inline-block;
+    margin-left: 10px;
+    width: auto;
+}
+div.form{
+    width: auto;
+}
+.copy{
+    width: 100%;
+    text-align: center;
+    font-size: 0.9em;
+}

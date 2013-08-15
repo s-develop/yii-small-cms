@@ -53,7 +53,10 @@ endif; ?>
 			"filter" => false
 			),
 		array(
-			'class'=>'CButtonColumn',
+            'class'=>'CButtonColumn',
+            'viewButtonOptions' => array('class' => 'none'),
+            'deleteButtonOptions' => array('class' => 'fui-cross'),
+            'updateButtonOptions' => array('class' => 'fui-new'),
 		),
 	),
 )); ?>

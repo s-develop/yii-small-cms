@@ -19,6 +19,7 @@
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	?>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap-select.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap-switch.js"></script>
@@ -28,7 +29,17 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/jquery.placeholder.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/jquery.stacktable.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/application.js"></script>
-
+    <script type="text/javascript">
+      tinymce.init({
+          selector: "#Content_content",
+          plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table contextmenu paste"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+      });
+    </script>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/css/control_module.css" />
 
 </head>
