@@ -1,4 +1,5 @@
 <?php
+
 // error_reporting(E_ALL & ~E_NOTICE);
 // date_default_timezone_set('Europe/Moscow');
 // change the following paths if necessary

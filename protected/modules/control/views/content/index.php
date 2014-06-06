@@ -61,8 +61,8 @@ endif; ?>
 			"filter" => false
 			),
 		array(
-            'class'=>'CButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl($data["uri"])',
+			'class'=>'CButtonColumn',
+            'viewButtonUrl'=>'Yii::app()->createUrl(($data["uri"]=="/")?"#":$data["uri"])',
             'viewButtonOptions' => array('class' => 'fui-eye'),
             'deleteButtonOptions' => array('class' => 'fui-cross'),
             'updateButtonOptions' => array('class' => 'fui-new'),

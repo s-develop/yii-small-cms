@@ -21,6 +21,12 @@
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'window_title'); ?>
+        <?php echo $form->textField($model,'window_title',array('size'=>120,'maxlength'=>255)); ?>
+        <?php echo $form->error($model,'window_title'); ?>
+    </div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'introtext'); ?>
 		<?php echo $form->textArea($model,'introtext',array('size'=>120,'maxlength'=>255)); ?>
@@ -30,7 +36,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>25, 'cols'=>60)); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
@@ -41,11 +47,17 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'uri'); ?>
+		<?php echo $form->textField($model,'uri',array('size'=>120,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'uri'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('size'=>120,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'keywords'); ?>
 		<?php echo $form->textField($model,'keywords',array('size'=>120,'maxlength'=>255)); ?>
@@ -58,6 +70,8 @@
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
+
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'category_id'); ?>
 		<?php echo $form->dropDownList($model,'category_id', Category::getAllCategories()); ?>
@@ -66,9 +80,21 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'created'); ?>
-		<?php echo $form->dateField($model,'created', array(
-			'value' => $model->created?date('j-m-Y H:i',$model->created):date('j-m-Y H:i',time()),
-		)); ?>
+        <?php
+        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+
+            'attribute' => 'created',
+            'name'=>'Content[created]',
+            'value' => $model->created?date('j-m-Y H:i',$model->created):date('j-m-Y H:i',time()),
+            // additional javascript options for the date picker plugin
+            'options'=>array(
+                'showAnim'=>'fold',
+                'dateFormat' => 'dd-mm-yy',
+                'showButtonPanel' => true,
+            ),
+
+        ));?>
+
 		<?php echo $form->error($model,'created'); ?>
 	</div>
 

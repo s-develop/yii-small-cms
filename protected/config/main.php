@@ -29,6 +29,7 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		'control',
+        'install',
 	),
 
 	// application components
@@ -46,6 +47,9 @@ return array(
 				'control/<action:\S+>/<id:\d+>'=>'control/<action>',
 				'control/<action:\S+>' =>'control/<action>',
 				'control' => 'control',
+                'install/<action:\S+>/<id:\d+>'=>'install/<action>',
+                'install/<action:\S+>' =>'install/<action>',
+                'install' => 'install/run',
                 'control/login' => 'control/login/index',
                 'gii' => 'gii',
                 'gii/<action:\S+>/<id:\d+>'=>'gii/<action>',
@@ -53,6 +57,7 @@ return array(
 				'site/<action:\S+>/<id:\d+>'=>'site/<action>',
 				'site/<action:\S+>' =>'site/<action>',
 				'<controller:\S+>' => '/site/index',
+                'feedbackform' => 'site/feedbackform',
 				'<controller:\w+>/<alias:\w+>' => '/site/index',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
@@ -64,9 +69,9 @@ return array(
 		// 	'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		// ),
 		// uncomment the following to use a MySQL database
-		
+
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
+			'connectionString' => 'mysql:host=localhost;dbname=new_yii',
 			'emulatePrepare' => true,
 			'username' => 'admin',
 			'password' => '',

@@ -12,14 +12,18 @@
 
     <!-- Loading Flat UI -->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/css/flat-ui.css" rel="stylesheet">
-	 <!-- Load JS =============================-->
+
+      <!-- Loading Editor CSS -->
+      <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/control/assets/CLEditor/jquery.cleditor.css" rel="stylesheet">
+
+      <!-- Load JS =============================-->
 
 	<?php
 		//При вызове Jquery.ui автоматом вызывается Jquery, но для наглядности можно и так	
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	?>
-    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script src="/themes/control/assets/CLEditor/jquery.cleditor.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap-select.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/bootstrap-switch.js"></script>
@@ -29,17 +33,12 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/jquery.placeholder.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/jquery.stacktable.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/js/application.js"></script>
-    <script type="text/javascript">
-      tinymce.init({
-          selector: "#Content_content",
-          plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table contextmenu paste"
-          ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-      });
-    </script>
+
+
+      <script type="text/javascript">
+          $(document).ready(function () { $("#Content_content").cleditor(); });
+      </script>
+
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/css/control_module.css" />
 
 </head>
@@ -66,13 +65,10 @@
                 <div class="nav-collapse collapse" id="nav-collapse-01">
                   <?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Статистика', 'url'=>array('/control/statistic'), 'items' =>
-						array(
-							array('label'=>'Счетчик скачки файлов', 'url'=>array('/control/filescounter'), )
-					)),
+				array('label'=>'Статистика', 'url'=>array('/control/statistic')),
 				array('label'=>'Категории', 'url'=>array('/control/category')),
 				array('label'=>'Страницы', 'url'=>array('/control/content')),
-				array('label'=>'Комментарии', 'url'=>array('/control/comments')),
+        		array('label'=>'Комментарии', 'url'=>array('/control/comments')),
 				array('label'=>'Настройки', 'url'=>array('/control/settings')),
 				array('label'=>'Пользователи', 'url'=>array('/control/user')),
 				

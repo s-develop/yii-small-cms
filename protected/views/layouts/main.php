@@ -14,9 +14,9 @@
 <meta name="keywords" content="<?php echo CHtml::encode($this->pageAttributes['keywords']); ?>" />  
 <meta name="description" content="<?php echo CHtml::encode($this->pageAttributes['description']); ?>" />
 <meta name="robots" content="index, follow" />
-<meta name="author" content="sdevelop" />  
+<meta name="author" content="sdevelop(sgsq@ya.ru)" />
 <meta name="robots" content="all" />
-<title><?php echo CHtml::encode($this->pageAttributes['title']); ?> | <?php echo $this->aSettings['add_to_title']; ?></title>
+<title><?php echo CHtml::encode($this->pageAttributes['window_title']); ?> | <?php echo $this->aSettings['add_to_title']; ?></title>
    <!-- Loading Bootstrap -->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/flat-ui/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -121,7 +121,7 @@ else {
     echo '<a href="/control">Панель управления</a></span>';
 }
 ?>
-  &nbsp;©&nbsp;2011-2013&nbsp;<?php echo $this->aSettings['company_name'] ?> 
+  &nbsp;©&nbsp;2011-2014&nbsp;<?php echo $this->aSettings['company_name'] ?>
 </div>
 <br class="clearfix" />
 </footer>

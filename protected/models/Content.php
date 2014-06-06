@@ -18,6 +18,7 @@ class Content extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Content the static model class
 	 */
+	public $verifyCode;
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -39,12 +40,14 @@ class Content extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, alias, content, introtext, status, category_id', 'required'),
-			array('created, status, category_id', 'numerical', 'integerOnly'=>true),
-			array(array('title','alias', 'uri', 'description', 'keywords'), 'length', 'max'=>255),
+			array('title, window_title, alias, content, status, category_id', 'required'),
+			array('status, category_id', 'numerical', 'integerOnly'=>true),
+			//array('verifyCode', 'captcha', 'allowEmpty'=>!Yii::app()->user->isGuest || !CCaptcha::checkRequirements()),
+			array(array('title', 'window_title', 'alias', 'uri', 'description', 'keywords','created'), 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content, alias, created, status, category_id', 'safe', 'on'=>'search'),
+			array('id, title, window_title, content, alias, created, status, category_id', 'safe', 'on'=>'search'),
+			// verifyCode needs to be entered correctly
 		);
 	}
 
@@ -67,7 +70,8 @@ class Content extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Заголовок',
+			'title' => 'Заголовок в контенте(H1)',
+            'window_title' => 'Заголовок окна(TITLE)',
 			'introtext' => 'Аннотация',
 			'content' => 'Содержание',
 			'alias' => 'Алиас(uri-адрес)',
@@ -93,6 +97,7 @@ class Content extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
+        $criteria->compare('window_title',$this->window_title,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('alias',$this->alias,true);
 		$criteria->compare('created',$this->created);
@@ -101,6 +106,9 @@ class Content extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>35,
+            ),
 		));
 	}
 

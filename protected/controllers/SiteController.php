@@ -27,9 +27,10 @@ class SiteController extends Controller
 	public $htmlBlocks  = array(
 			'countersBlock' => '',
 			'topMenu' => '',
-			'topTab' => '',
+			'topSlider' => '',
 			'leftBlock' => '',
 			'socialBlock' => '',
+            'topTab' =>'',
 		);
 
 
@@ -42,8 +43,8 @@ class SiteController extends Controller
 		$this->htmlBlocks['countersBlock'] = $this->renderPartial('_counters',null,true);
 		//Верхнее меню
 		$this->htmlBlocks['topMenu'] = $this->renderPartial('_topMenu',null,true);
-		//Верхние инфо-блоки
-		$this->htmlBlocks['topTab'] = $this->renderPartial('_topTab',null,true);
+        //Верхние инфо-блоки
+        $this->htmlBlocks['topTab'] = $this->renderPartial('_topTab',null,true);
 		//Левый блок
 		$this->htmlBlocks['leftBlock'] = $this->renderPartial('_leftBlock',null,true);
 		//Блок с кнопками соц.сетей
@@ -87,6 +88,10 @@ class SiteController extends Controller
 					$this->run('sitemap');
 					$pageRender = false;
 				break;
+            case '/zajavka':
+                $this->run('zajavka');
+                $pageRender = false;
+                break;
 			
 			default:
 				$pageRender = true;
@@ -188,24 +193,56 @@ class SiteController extends Controller
 	public function actionFeedbackform()
 	{
 		$model=new ContactForm;
+
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
+				
+				$messageBody = $model->name."\r\n".$model->phone."\r\n".$model->address;
 				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
+				$subject='=?UTF-8?B?'.base64_encode('Заявка').'?=';
+				$headers="".
+					"".
 					"MIME-Version: 1.0\r\n".
 					"Content-type: text/plain; charset=UTF-8";
 
-				mail($this->aSettings['admin_email'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','<h3>Сообщение успешно отправлено</h3>');
+				mail($this->aSettings['admin_email'],$subject,$messageBody,$headers);
+				Yii::app()->user->setFlash('contact','<h3>Менеджер свяжется с Вами в течении нескольких минут</h3>');
 				$this->refresh();
 			}
 		}
-		$this->render('contact',array('model'=>$model));
+
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('uri=:page_uri');
+        if(Yii::app()->user->isGuest){
+            $criteria->addCondition('status=:page_status');
+            $criteria->params = array(
+                'page_uri' => '/zajavka',
+                'page_status' => 1,
+            );
+        }else{
+            $criteria->params = array(
+                'page_uri' => '/zajavka',
+            );
+        }
+        $model_content = Content::model()->find($criteria);
+
+        //Если результат не пустой рендерим вид со страницей
+        if(!empty($model_content)){
+
+            $aResult = $model_content->getAttributes();
+            $this->pageAttributes = $aResult;
+            //var_dump($this->pageAttributes);
+            //Блок с кнопками соц.сетей
+            $this->htmlBlocks['socialBlock'] = $this->renderPartial('_social',null,true);
+            //
+            header('Last-Modified: '. gmdate("D, d M Y H:i:s \G\M\T", $aResult['created']));
+            $aResult['model'] = $model;
+            $this->render('contact', $aResult);
+        }
+
 	}
 
 	/*

@@ -8,5 +8,5 @@ Disallow: /webstat/
 Disallow: /external/
 Disallow: /protected/
 Disallow: /themes/
-Host: q-seo.ru
-Sitemap: http://q-seo.ru/sitemap.xml
+Host: example.com
+Sitemap: http://example.com/sitemap.xml
