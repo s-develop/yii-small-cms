@@ -71,10 +71,10 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=new_yii',
+			'connectionString' => '{{db_connect_string}}',
 			'emulatePrepare' => true,
-			'username' => 'admin',
-			'password' => '',
+			'username' => '{{db_username}}',
+			'password' => '{{db_password}}',
 			'charset' => 'utf8',
 			'tablePrefix' => 'dev_',
 		),

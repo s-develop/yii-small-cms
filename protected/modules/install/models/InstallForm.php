@@ -17,7 +17,7 @@ class InstallForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('app_name,db_host,db_name,db_username,
+			array('app_name,db_host,db_name,db_username,db_password,
 				url_path,url_resource_path,timezone,admin_email,
 				site_title,site_description
 				', 'required'),
